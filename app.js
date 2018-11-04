@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import { render } from 'react-dom';
 import Header from './src/components/Header';
 import Footer from './src/components/Footer';
+import { default as Login } from './src/containers/Login';
 import { default as Main } from './src/containers/Main';
 import { default as Mypage } from './src/containers/Mypage';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
@@ -46,6 +47,7 @@ class App extends Component {
                     <Header />
                     <Route exact path="/" component={Main}/>
                     <Switch>
+                        <Route path="/login/" component={Login}/>
                         <Route path="/mypage/" component={Mypage}/>
                     </Switch>
                     <Footer />

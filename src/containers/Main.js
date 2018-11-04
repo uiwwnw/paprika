@@ -16,21 +16,21 @@ export default class Main extends Component {
         `;
     }
 
-    onClick1() {
-        store.dispatch(action.change('CHANGEHEADER', false));
-        // this.setState({
-        //     aaa: this.props.store.getState().value
-        // })
-    }
+    // onClick1() {
+    //     store.dispatch(action.change('CHANGEHEADER', false));
+    //     // this.setState({
+    //     //     aaa: this.props.store.getState().value
+    //     // })
+    // }
 
     // onClick2() {
     //     this.props.store.dispatch(increase('DESCREMENT', 2));
     // }
 
-    componentWillMount() {
+    // componentWillMount() {
 
-        <Item />
-    }
+    //     <Item />
+    // }
 
     render() {
         
