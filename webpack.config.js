@@ -5,19 +5,20 @@ module.exports = {
   entry: './app.js',
   output: {
     path: path.resolve(__dirname, 'public'),
-    filename: './bundle.js'
+    filename: './js/bundle.js'
   },
   devServer: {
     contentBase: path.join(__dirname, 'public'),
     inline: true,
     port: 8800,
-    hot: true
+    hot: true,
+    historyApiFallback: true
   },
   mode: 'development',
   module: {
     rules: [
       {
-        test: /\.css$/,
+        test: /\.(css|scss)$/,
         use: [
           {
             loader: 'style-loader' // creates style nodes from JS strings
@@ -32,6 +33,18 @@ module.exports = {
           },
           {
             loader: 'sass-loader' // compiles Sass to CSS
+          }
+        ]
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {
+              name: '[hash].[ext]',
+              outputPath: 'img/',
+            }
           }
         ]
       },

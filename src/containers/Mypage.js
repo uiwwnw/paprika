@@ -1,27 +1,28 @@
 import React, { Component } from 'react';
+import commonStyle, { unit } from '../variables/style.js';
 import styled from 'styled-components';
 
 export default class Mypage extends Component {
     constructor(props) {
         super(props);
+        this.Mypage = styled.div`
+            padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
+        `;
     }
 
     render() {
-        const Mypage = styled.div`
-            color: red;
-            font-size: 20px;
-        `;
+        
 
         return (
-            <Mypage>
-                <h2>마이페이지</h2>
+            <this.Mypage>
+                <h2>lorem</h2>
                 {/* <h1
                     onClick={ this.onClick1.bind(this) }
                 > {this.state.aaa} </h1>
                 <h1
                     onClick={ this.onClick2.bind(this) }
                 > {this.props.store.getState().value} </h1> */}
-            </Mypage>
+            </this.Mypage>
         )
     }
 }

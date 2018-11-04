@@ -2,32 +2,40 @@ import { createStore } from 'redux';
 /*
  * Reducer
  */
+
+ const action = {
+     change: (type, bool) => {
+        return {
+            type,
+            bool
+        };
+     }
+ };
+
 const initialState = {
     headerVisible: true,
-    style: {
-        zIndex: {
-            header: 100
-        },
-        header: {
-            height: '2.5rem'
-        },
-        padding: '.4rem 1rem'
-    }
+    footerVisible: false,
+    pageName: 'main',
+    windowHeight: 0
 };
 
 const counterReducer = (state = initialState, action) => {
     switch(action.type) {
-        case 'INCREMENT':
+        // case 'INCREMENT':
+        //     return Object.assign({}, state, {
+        //         value: state.value + action.addBy
+        //     });
+        case 'WINDOWHEIGHT':
             return Object.assign({}, state, {
-                value: state.value + action.addBy
+                windowHeight: action.bool
             });
-        case 'DESCREMENT':
+        case 'CHANGEHEADER':
             return Object.assign({}, state, {
-                value: state.value - action.addBy
+                headerVisible: action.bool
             });
-        case 'CHANGE':
+        case 'CHANGEFOOTER':
             return Object.assign({}, state, {
-                value: action.addBy
+                footerVisible: action.bool
             });
         default:
             return state;
@@ -39,4 +47,4 @@ const counterReducer = (state = initialState, action) => {
  */
 const store = createStore(counterReducer);
 
-export default store;
+export {store, action};
