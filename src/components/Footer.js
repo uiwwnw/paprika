@@ -13,7 +13,6 @@ class Footer extends Component {
     }
 
     render() {
-
         return (
             <this.Footer aria-hidden={!this.props.visible}>
                 <cite>&copy;uiwwnw</cite>

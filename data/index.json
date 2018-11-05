@@ -5,28 +5,41 @@
             "latlng": [33.450705, 126.570677],
             "price": 1300,
             "min": null,
-            "user": "admin"
+            "owner": "admin",
+            "using": [
+                "1987-04-05T12:31:31.113Z"
+            ]
         },
         {
             "title": "생태연못",
             "latlng": [33.450936, 126.569477],
             "price": 1300,
             "min": null,
-            "user": "uiwwnw"
+            "owner": "uiwwnw",
+            "using": [
+                "1988-04-05T12:31:31.113Z"
+            ]
         },
         {
             "title": "텃밭",
             "latlng": [33.450879, 126.569940],
             "price": 1300,
             "min": null,
-            "user": "admin"
+            "owner": "admin",
+            "using": [
+                "2018-09-05T12:31:31.113Z"
+            ]
         },
         {
             "title": "근린공원",
             "latlng": [33.451393, 126.570738],
             "price": 1300,
             "min": null,
-            "user": "admin"
+            "owner": "admin",
+            "using": [
+                "1987-04-05T12:31:31.113Z"
+            ]
         }
-    ]
+    ],
+    "users": []
 }

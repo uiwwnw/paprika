@@ -24,7 +24,8 @@ class Header extends Component {
                 padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
                 box-sizing: border-box;
                 font-size: ${unit(12)};
-                background: rgba(255, 255, 255, .1);
+                color: #000;
+                background: rgba(255, 255, 255, .9);
 
                 > * {
                     flex: 1;
@@ -37,14 +38,12 @@ class Header extends Component {
 
                 h1 {
                     flex: 100%;
-                    color: #fff;
                 }
 
                 .link {
                     flex-basis: ${commonStyle.header.height};
                     text-align: center;
                     font-size: ${unit(16)};
-                    color: #fff;
                 }
             }
 

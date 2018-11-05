@@ -5,22 +5,22 @@ import commonStyle, { unit } from '../variables/style.js';
 import styled from 'styled-components';
 
 
-export default class Login extends Component {
+export default class Join extends Component {
     constructor(props) {
         super(props);
-        this.Login = styled.div`
+        this.Join = styled.div`
             padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
         `;
     }
 
     render() {
         return (
-            <this.Login>
-                <h1>login</h1>
+            <this.Join>
+                <h1>join</h1>
                 <input type="text"/>
                 <input type="password"/>
-                <button>로그인하기</button>
-            </this.Login>
+                <button>회원가입하기</button>
+            </this.Join>
         )
     }
 }

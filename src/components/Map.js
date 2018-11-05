@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import config from '../../config';
 import { positions } from '../../data/index.json';
 
 export default class Maps extends Component {
     constructor(props) {
         super(props);
         this.Map = styled.div`
+            display: ${window.daum === undefined?'none':'block'};
             height: ${this.props.height||'40vh'};
         `;
     }
@@ -39,7 +41,6 @@ export default class Maps extends Component {
                 image: markerImage // 마커 이미지 
             });
         }
-
     }
     mapFind() {
         var _this = this;
@@ -57,9 +58,23 @@ export default class Maps extends Component {
             alert('GPS를 지원하지 않습니다');
         }
     }
+    // componentWillMount() {
+    //     const scriptjs = require('scriptjs');
+    //     const _this = this;
+    //     scriptjs('//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi, function(e) {
+    //         _this.setState({
+    //             daum: window.daum
+    //         });
+    //     });
+    // //     // daumMap.setAttribute('type', 'text/javascript');
+    // //     // daumMap.setAttribute('src', '//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi);
+    // //     // document.getElementById('root').prepend(daumMap);
+    // }
     componentDidMount() {
-        this.mapInit();
-        // this.mapFind();
+        if (window.daum !== undefined) {
+            this.mapInit();
+            // this.mapFind();
+        }
     }
 
     render() {

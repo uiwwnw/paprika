@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import Item from './Item';
 import styled from 'styled-components';
-import commonStyle, { unit } from '../variables/style.js';
-import { positions } from '../../data/index.json';
+// import commonStyle, { unit } from '../variables/style.js';
+// import { positions } from '../../data/index.json';
 
 export default class List extends Component {
     constructor(props) {
@@ -15,7 +15,7 @@ export default class List extends Component {
     render() {
         return (
             <this.List>
-                {positions.map((e, i) => {
+                {this.props.positions.map((e, i) => {
                     return (
                         <Item 
                             title={e.title} 

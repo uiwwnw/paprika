@@ -6,6 +6,7 @@ import noImg from '../image/no.png';
 export default class Item extends Component {
     constructor(props) {
         super(props);
+        
         this.Item = styled.div`
             display: flex;
             margin: ${commonStyle.paddingVertical} 0;
