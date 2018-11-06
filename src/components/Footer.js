@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HOC_other from './HOC_other';
+import HeaderFooter from '../hoc/components';
 import styled from 'styled-components';
 
 class Footer extends Component {
@@ -20,6 +20,6 @@ class Footer extends Component {
         )
     }
 };
-const withHocFooter = HOC_other(Footer, 'footerVisible');
+const withHocFooter = HeaderFooter(Footer, 'footerVisible');
 
 export default withHocFooter;

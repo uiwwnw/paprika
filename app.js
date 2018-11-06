@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { render } from 'react-dom';
-import Header from './src/components/Header';
-import Footer from './src/components/Footer';
+// import Header from './src/components/Header';
+// import Footer from './src/components/Footer';
+import * as Components from './src/components/Components';
 // import { default as Join } from './src/containers/Join';
 // import { default as Login } from './src/containers/Login';
 // import { default as Main } from './src/containers/Main';
@@ -16,14 +17,6 @@ import { faUser } from '@fortawesome/free-solid-svg-icons';
 import 'normalize.css';
 
 library.add(faUser);
-
-class Rou extends Component {
-    render() {
-        return (
-            <div></div>
-        )
-    }
-}
 
 class App extends Component {
     componentWillMount() {
@@ -50,11 +43,7 @@ class App extends Component {
                 content: "";
             }
         `;
-        
-        let pages = [];
-        for(let page in Containers) {
-            pages.push(page);
-        }
+       
         // Containers.map(function() {
         //     console.log('dsds')
         // })
@@ -62,10 +51,9 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <Index>
-                    <Header />
+                    <Components.Header />
                     <Route exact path="/" component={Containers.Main}/>
                     <Switch>
-                        
                         {/* <Route path="/login/" component={Containers.Login} /> */}
                         {/* {
                             pages.forEach((name)=>{
@@ -86,7 +74,7 @@ class App extends Component {
                         <Route path="/join/" component={Containers.Join}/>
                         <Route path="/mypage/" component={Containers.Mypage}/>
                     </Switch>
-                    <Footer />
+                    <Components.Footer />
                 </Index>
             </BrowserRouter>
         )

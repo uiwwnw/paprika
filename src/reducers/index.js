@@ -13,6 +13,7 @@ import { createStore } from 'redux';
  };
 
 const initialState = {
+    userID: null,
     headerVisible: true,
     footerVisible: false,
     pageName: 'main',

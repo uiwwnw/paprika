@@ -1,45 +1,78 @@
 {
-    "positions": [
-        {
-            "title": "카카오",
-            "latlng": [33.450705, 126.570677],
-            "price": 1300,
-            "min": null,
-            "owner": "admin",
-            "using": [
-                "1987-04-05T12:31:31.113Z"
-            ]
-        },
-        {
-            "title": "생태연못",
-            "latlng": [33.450936, 126.569477],
-            "price": 1300,
-            "min": null,
-            "owner": "uiwwnw",
-            "using": [
-                "1988-04-05T12:31:31.113Z"
-            ]
-        },
-        {
-            "title": "텃밭",
-            "latlng": [33.450879, 126.569940],
-            "price": 1300,
-            "min": null,
-            "owner": "admin",
-            "using": [
-                "2018-09-05T12:31:31.113Z"
-            ]
-        },
-        {
-            "title": "근린공원",
-            "latlng": [33.451393, 126.570738],
-            "price": 1300,
-            "min": null,
-            "owner": "admin",
-            "using": [
-                "1987-04-05T12:31:31.113Z"
-            ]
-        }
-    ],
-    "users": []
+  "positions": [
+    {
+      "title": "카카오",
+      "latlng": [
+        33.450705,
+        126.570677
+      ],
+      "price": 1300,
+      "min": null,
+      "owner": "admin",
+      "using": [
+        "1987-04-05T12:31:31.113Z"
+      ]
+    },
+    {
+      "title": "생태연못",
+      "latlng": [
+        33.450936,
+        126.569477
+      ],
+      "price": 1300,
+      "min": null,
+      "owner": "uiwwnw",
+      "using": [
+        "1988-04-05T12:31:31.113Z"
+      ]
+    },
+    {
+      "title": "텃밭",
+      "latlng": [
+        33.450879,
+        126.56994
+      ],
+      "price": 1300,
+      "min": null,
+      "owner": "admin",
+      "using": [
+        "2018-09-05T12:31:31.113Z"
+      ]
+    },
+    {
+      "title": "근린공원",
+      "latlng": [
+        33.451393,
+        126.570738
+      ],
+      "price": 1300,
+      "min": null,
+      "owner": "admin",
+      "using": [
+        "1987-04-05T12:31:31.113Z"
+      ]
+    }
+  ],
+  "users": [
+    {
+      "id": "uiwwnw",
+      "pw": "/pwYKjhAQLogHn+4tXjorQ=="
+    },
+    {
+      "id": "test1",
+      "pw": "SWKMx+NWwH13Ev3DrOpQ9g=="
+    },
+    {
+      "id": "test2",
+      "pw": "SWKMx+NWwH13Ev3DrOpQ9g=="
+    },
+    {
+      "id": "test3",
+      "pw": "SWKMx+NWwH13Ev3DrOpQ9g=="
+    },
+    {
+      "id": "test4",
+      "pw": "SWKMx+NWwH13Ev3DrOpQ9g=="
+    }
+  ]
 }

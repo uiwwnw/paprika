@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { store } from '../reducers/index.js';
 
-const HOC_other = (Component, variables) => {
-    class _HOC_other extends Component {
+const HeaderFooter = (Component, variables) => {
+    class _HeaderFooter extends Component {
         constructor(props) {
             super(props);
             this.stateUpdate = this.stateUpdate.bind(this);
@@ -29,7 +29,7 @@ const HOC_other = (Component, variables) => {
             )
         }
     }
-    return _HOC_other
+    return _HeaderFooter
 }
 
-export default HOC_other;
+export default HeaderFooter;

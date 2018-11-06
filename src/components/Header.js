@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HOC_other from './HOC_other';
+import HeaderFooter from '../hoc/components';
 import commonStyle, {unit} from '../variables/style.js';
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
@@ -67,6 +67,6 @@ class Header extends Component {
         )
     }
 };
-const withHocHeader = HOC_other(Header, 'headerVisible');
+const withHocHeader = HeaderFooter(Header, 'headerVisible');
 
 export default withHocHeader;
