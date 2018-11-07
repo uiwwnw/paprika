@@ -46,6 +46,7 @@ export default class Main extends Component {
     // }
 
     render() {
+        console.log(store.getState());
         
         return (
             <this.Main>

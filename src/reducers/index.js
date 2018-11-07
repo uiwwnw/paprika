@@ -9,14 +9,22 @@ import { createStore } from 'redux';
             type,
             bool
         };
+     },
+     userInfo: (type, bool) => {
+        return {
+            type,
+            bool
+        };
      }
  };
 
 const initialState = {
-    userID: null,
+    userId: null,
+    userName: null,
+    userPw: null,
+    userEmail: null,
     headerVisible: true,
     footerVisible: false,
-    pageName: 'main',
     windowHeight: 0
 };
 
@@ -37,6 +45,13 @@ const counterReducer = (state = initialState, action) => {
         case 'CHANGEFOOTER':
             return Object.assign({}, state, {
                 footerVisible: action.bool
+            });
+        case 'USERINFO':
+            return Object.assign({}, state, {
+                userId: action.bool.userId,
+                userName: action.bool.userName,
+                userPw: action.bool.userPw,
+                userEmail: action.bool.userEmail
             });
         default:
             return state;

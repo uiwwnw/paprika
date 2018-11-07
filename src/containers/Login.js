@@ -4,8 +4,8 @@ import * as Components from '../components/Components';
 import { store, action } from '../reducers/index.js';
 import commonStyle, { unit } from '../variables/style.js';
 import styled from 'styled-components';
+import {getPw} from '../../services/createCipher';
 import { get } from '../../services/get';
-
 
 class Login extends Component {
     constructor(props) {
@@ -26,8 +26,18 @@ class Login extends Component {
         } else {
             get('users?id=' + this.state.id)
             .then(response => {
-                if (response.data[0].pw === this.state.pw) {
+                const data = response.data[0];
+                if (data.pw === this.state.pw) {
                     console.log('로그인에성공햇습니다.');
+                    store.dispatch(action.userInfo('USERINFO', {
+                        'userId': getPw(data.id),
+                        'userName': getPw(data.name),
+                        'userPw': data.pw,
+                        'userEmail': data.email,
+                    }));
+                    // console.log(this.context.router);
+                    // history.push();
+                    document.location.href = document.location.origin;
                 } else {
                     alert('아이디, 비밀번호를 다시확인해주세요')
                 }
