@@ -8,7 +8,7 @@ import * as Components from './src/components/Components';
 // import { default as Main } from './src/containers/Main';
 // import { default as Mypage } from './src/containers/Mypage';
 import * as Containers from './src/containers/Containers';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Redirect } from 'react-router-dom';
 import { store, action } from './src/reducers/index.js';
 import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -53,7 +53,7 @@ class App extends Component {
                 <Index>
                     <Components.Header />
                     <Route exact path="/" component={Containers.Main}/>
-                    <Switch>
+                    {/* <Switch> */}
                         {/* <Route path="/login/" component={Containers.Login} /> */}
                         {/* {
                             pages.forEach((name)=>{
@@ -70,10 +70,10 @@ class App extends Component {
                             //     )
                             // })
                         } */}
-                        <Route path="/login/" component={Containers.Login}/>
-                        <Route path="/join/" component={Containers.Join}/>
-                        <Route path="/mypage/" component={Containers.Mypage}/>
-                    </Switch>
+                        <Route path="/login" component={Containers.Login}/>
+                        <Route path="/join" component={Containers.Join}/>
+                        <Route path="/mypage" component={Containers.Mypage}/>
+                    {/* </Switch> */}
                     <Components.Footer />
                 </Index>
             </BrowserRouter>

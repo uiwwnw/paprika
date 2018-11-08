@@ -59,7 +59,7 @@ class Header extends Component {
             <this.Header aria-hidden={!this.props.visible}>
                 <article>
                     <h1><NavLink to="/">paprika</NavLink></h1>
-                    <NavLink to="/mypage/" className="link">
+                    <NavLink to="/mypage" className="link">
                         <FontAwesomeIcon icon="user" />
                     </NavLink>
                 </article>

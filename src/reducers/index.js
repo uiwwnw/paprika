@@ -23,8 +23,9 @@ const initialState = {
     userName: null,
     userPw: null,
     userEmail: null,
+    joined: false,
     headerVisible: true,
-    footerVisible: false,
+    footerVisible: true,
     windowHeight: 0
 };
 
@@ -51,7 +52,8 @@ const counterReducer = (state = initialState, action) => {
                 userId: action.bool.userId,
                 userName: action.bool.userName,
                 userPw: action.bool.userPw,
-                userEmail: action.bool.userEmail
+                userEmail: action.bool.userEmail,
+                joined: action.bool.joined
             });
         default:
             return state;

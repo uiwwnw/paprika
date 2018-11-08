@@ -4,6 +4,7 @@ import Input from './Input';
 import Item from './Item';
 import List from './List';
 import Map from './Map';
+import Popup from './Popup';
 
 export {
     Footer,
@@ -11,5 +12,6 @@ export {
     Input,
     Item,
     List,
-    Map
+    Map,
+    Popup
 }

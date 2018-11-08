@@ -35,7 +35,8 @@ const LoginJoin = (Component) => {
             this.setState({
                 [t]: e.target.value.length > 1?cipher:null
             });
-            if (Object.values(this.state).indexOf(null, 1) === -1) {
+            const validIdx = Number(Object.keys(this.state).indexOf('valid') + 1);
+            if (Object.values(this.state).indexOf(null, validIdx) === -1) {
                 this.setState({
                     valid: false
                 });
@@ -48,7 +49,7 @@ const LoginJoin = (Component) => {
     
         render() {
             return (
-                <Component input={this.input} {...this.state} />
+                <Component input={this.input} />
             )
         }
     }

@@ -51,6 +51,19 @@
       "using": [
         "1987-04-05T12:31:31.113Z"
       ]
+    },
+    {
+      "title": "근린공원11122",
+      "latlng": [
+        33.451393,
+        126.570738
+      ],
+      "price": 1300,
+      "min": null,
+      "owner": "test",
+      "using": [
+        "1987-04-05T12:31:31.113Z"
+      ]
     }
   ],
   "users": [
@@ -77,6 +90,12 @@
       "pw": "AqbmqzpHBeTzp7e1I8B2kQ==",
       "email": "qycEeFkVDzMkJ02dVt91DQ==",
       "name": "tFv/SuxlTgSkgxfXE3EJ+Q=="
+    },
+    {
+      "id": "tiOGkOcaf3jB9L+fcIGaXw==",
+      "pw": "NGYT3zfIOq/hQH8TSVFDmQ==",
+      "email": "JfN9zbkOubOiiVBjK6up1A==",
+      "name": "P4rRlmB5Eb/ErEXcZsGprg=="
     }
   ]
 }

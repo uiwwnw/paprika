@@ -5,6 +5,7 @@ import { store, action } from '../reducers/index.js';
 import commonStyle, { unit } from '../variables/style.js';
 import styled from 'styled-components';
 import { post } from '../../services/post';
+import { get } from '../../services/get';
 
 
 class Join extends Component {
@@ -23,24 +24,45 @@ class Join extends Component {
             padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
         `;
     }
+    // componentWillMount(){
+    //     if(store.getState().joined === true) {
+
+    //     }
+    // }
     submit() {
         // console.log( document.location);
         if (this.state.valid || (this.state.pw !== this.state.rpw)) {
             alert('아이디, 비밀번호, 이메일을 다시확인해주세요')
         } else {
-            post('users/', {
-                'id': this.state.id,
-                'pw': this.state.pw,
-                'email': this.state.email,
-                'name': this.state.name
-            })
+            get('users?id=' + this.state.id)
             .then(response => {
-                alert('회원가입이 정상적으로 완료되었습니다.');
-                document.location.href = document.location.origin + '/login/';
+                const data = response.data[0];
+                if(data.id === this.state.id) {
+                    alert('동일한 아이디가 존재합니다.')
+                    return false;
+                }
+                post('users/', {
+                    'id': this.state.id,
+                    'pw': this.state.pw,
+                    'email': this.state.email,
+                    'name': this.state.name
+                })
+                .then(response => {
+                    store.dispatch(action.userInfo('USERINFO', {
+                        'joined': true,
+                    }));
+                    alert('회원가입이 정상적으로 완료되었습니다.');
+                    
+                })
+                .catch(response => {
+                    console.log(response, '회원가입실패')
+                });
             })
             .catch(response => {
-                console.log(response, '회원가입실패')
+                console.log(response, '아이디검색실패')
             });
+            // if(this.state.id === )
+            
         }
     }
 
