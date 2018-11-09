@@ -22,6 +22,24 @@ class Join extends Component {
         this.submit = this.submit.bind(this);
         this.Join = styled.div`
             padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
+
+            label + a,
+            label + button {
+                margin-top: ${unit(20)};
+            }
+
+            a,
+            button {
+                display: block;
+                width: 100%;
+                margin-top: ${unit(4)};
+                line-height: ${unit(30)};
+                border: 0;
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+                background: #000;
+            }
         `;
     }
     // componentWillMount(){
@@ -69,7 +87,7 @@ class Join extends Component {
     render() {
         return (
             <this.Join>
-                <h1>join</h1>
+                <h2>login</h2>
                 <Components.Input title="이름" type="text" onInput={this.props.input.bind(this, 'name')}/>
                 <Components.Input title="아이디" type="text" onInput={this.props.input.bind(this, 'id')} />
                 <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')}/>

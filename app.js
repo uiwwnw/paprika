@@ -8,7 +8,7 @@ import * as Components from './src/components/Components';
 // import { default as Main } from './src/containers/Main';
 // import { default as Mypage } from './src/containers/Mypage';
 import * as Containers from './src/containers/Containers';
-import { BrowserRouter, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { store, action } from './src/reducers/index.js';
 import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';

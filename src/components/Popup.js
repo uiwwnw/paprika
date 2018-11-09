@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 const makeClassName = (n) => {
-    return btoa(Math.random()).substring(0,n);
+    return btoa(Math.random()).substring(0, n);
 };
-const makeNew = function(a) {
+const makeNew = function (a) {
     const popupOn = makeClassName(7);
     const popupOff = makeClassName(7);
     const hasScroll = makeClassName(7);
@@ -51,6 +51,7 @@ const makeNew = function(a) {
         height: ${(props) => props.headerHeight + 'px'};
         border-bottom: ${(props) => props.popupBorderThick + 'px'} solid ${(props) => props.popupDivideBorderColor};
         background: #fff;
+
         h2 {
             margin: 0;
             padding: 0 ${(props) => props.headerHeight + 'px'} 0 ${(props) => props.popupInnerPadding + 'px'};
@@ -61,12 +62,13 @@ const makeNew = function(a) {
             overflow: hidden;
             text-overflow: ellipsis;
         }
-        a {
+        button {
             position: absolute;
             right: 0;
             top: 0;
             width: ${(props) => props.headerHeight + 'px'};
             height: ${(props) => props.headerHeight + 'px'};
+            margin: 0;
             text-indent: -9999px;
             background: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAARCAYAAADQWvz5AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA25pVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuNi1jMTM4IDc5LjE1OTgyNCwgMjAxNi8wOS8xNC0wMTowOTowMSAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo5MDI3OTk0Yi0yYjI1LTJlNGMtYTQ4YS1iYzA2NDRkMGIzMzIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QzM1QTQyNDQ4NjUzMTFFOEI5NjNFOUIwNEYxNTk1NTciIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QzM1QTQyNDM4NjUzMTFFOEI5NjNFOUIwNEYxNTk1NTciIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENDIDIwMTcgKFdpbmRvd3MpIj4gPHhtcE1NOkRlcml2ZWRGcm9tIHN0UmVmOmluc3RhbmNlSUQ9InhtcC5paWQ6OTY5MUEwNTc4MzRDMTFFOEJCQkVFNDlFQTgyRDk0RkYiIHN0UmVmOmRvY3VtZW50SUQ9InhtcC5kaWQ6OTY5MUEwNTg4MzRDMTFFOEJCQkVFNDlFQTgyRDk0RkYiLz4gPC9yZGY6RGVzY3JpcHRpb24+IDwvcmRmOlJERj4gPC94OnhtcG1ldGE+IDw/eHBhY2tldCBlbmQ9InIiPz6WSLqQAAABB0lEQVR42pySaaqFMAyFmzrgNgWnDSnOrlNE8zhCoLe1vdfXP9WkOfky0DAMTESqLEtS/ziIx03MrKZpYtxVVb0Sm+f5jgOEhgEfMMDxhkRE8K/FUdc1neepxnHkX0gEQGw3iXlQpv3I9iNh0zQffm0/lDKXZXHIQHtdlyPySGQGwYeSpSdRFKmiKB5JvUISrLVWoMCKhKaqQ00FDRL9shpBIWl8lmWqbdvgNL2l2Uu6bRvv+/7YaC9R3/f3dMxy8jwn9Mm3Zw6RLJtvOvDbSRwiTAmPfCKSAGTSP0cImb6N2Fza4zjUuq78URp6EsdxkOTpdF3HSZLcwoSxpmn6WsQUQ/yfAAMAl6XEeJIUMXAAAAAASUVORK5CYII=") no-repeat center;
 
@@ -98,38 +100,60 @@ const makeNew = function(a) {
             content: "";
         }
 
-        button {
+        > * {
             flex: 1;
-            min-height: 40px;
-            font-size: 16px;
-            line-height: 1.2;
-            border: 0;
-            border-radius: 2px;
-            background: 0;
-            &+button {
-                margin-left: 10px;
+
+             & + * {
+                padding-left: 5px;
             }
-            &.${normalBtn} {
+        }
+
+        .${normalBtn} {
+            > a,
+            > button  {
                 color: #000;
                 background: #eee;
                 &:active {
                     background: #333;
                 }
             }
-            &.${negativeBtn} {
+        }
+        .${negativeBtn} {
+            > a,
+            > button  {
                 color: #fff;
                 background: #323232;
                 &:active {
                     background: #000;
                 }
             }
-            &.${positiveBtn} {
+        }
+        .${positiveBtn} {
+            > a,
+            > button  {
                 color: #000;
                 border: 1px solid #000;
                 &:active {
                     background: #efefef;
                 }
             }
+        }
+
+        a,
+        button {
+            display: block;
+            width: 100%;
+            height: ${(props) => props.footerHeight - 20 + 'px'};
+            margin: 0;
+            padding: 0 4px;
+            box-sizing: border-box;
+            white-space: nowrap;
+            text-decoration: none;
+            font-size: 16px;
+            line-height: ${(props) => props.footerHeight - 20 + 'px'};
+            border: 0;
+            border-radius: 2px;
+            background: 0;
         }
     `;
     const Dim = styled.i`
@@ -160,19 +184,20 @@ const makeNew = function(a) {
         vertical-align: middle;
         background: #fff;
         &:before {
-        z-index: -1;
-        position: absolute;
-        top: -${(props) => props.popupBorderThick + 'px'};
-        right: -${(props) => props.popupBorderThick + 'px'};
-        bottom: -${(props) => props.popupBorderThick + 'px'};
-        left: -${(props) => props.popupBorderThick + 'px'};
-        border: ${(props) => props.popupBorderThick + 'px'} solid ${(props) => props.popupBorderColor};
-        box-shadow: 0 2px 20px rgba(0, 0, 0, .4);
-        content: "";
+            z-index: 1;
+            position: absolute;
+            top: -${(props) => props.popupBorderThick + 'px'};
+            right: -${(props) => props.popupBorderThick + 'px'};
+            bottom: -${(props) => props.popupBorderThick + 'px'};
+            left: -${(props) => props.popupBorderThick + 'px'};
+            border: ${(props) => props.popupBorderThick + 'px'} solid ${(props) => props.popupBorderColor};
+            box-shadow: 0 2px 20px rgba(0, 0, 0, .4);
+            pointer-events: none;
+            content: "";
         }
         .${hasHeader} & {
             &:before {
-                top: -${(props) => props.headerHeight + 'px'};
+                top: -${(props) => props.headerHeight + 1 + 'px'};
             }
         }
         .${hasFooter} & {
@@ -280,13 +305,13 @@ export default class ClassPopup extends Component {
             resize: null,
 
             ctr: makeNew('active'),
-            
+
             active: 'active',
             width: 'auto',
             height: 'auto',
 
             headerHeight: 40,
-            footerHeight: 70,
+            footerHeight: 60,
             popupOuterPadding: 20,
             popupInnerPadding: 20,
             popupBorderThick: 1,
@@ -294,18 +319,18 @@ export default class ClassPopup extends Component {
             popupDivideBorderColor: '#eee'
         }
     }
-    componentDidMount(){
+    componentDidMount() {
         if (this.props.className !== undefined) {
-            const PopupElem = document.querySelector('.'+this.state.ctr.Popup.styledComponentId);
+            const PopupElem = document.querySelector('.' + this.state.ctr.Popup.styledComponentId);
             PopupElem.classList.add(this.props.className);
         };
     }
     componentWillReceiveProps(e) {
-        if(e.bool === null) {
+        if (e.bool === null) {
             return false;
         };
         // console.log(e.bool !== this.state.bool);
-        if (e.bool !== this.state.bool){
+        if (e.bool !== this.state.bool) {
             this.setState({
                 bool: e.bool
             });
@@ -313,27 +338,27 @@ export default class ClassPopup extends Component {
         }
     }
     popupClass(e, b) {
-        const PopupElem = document.querySelector('.'+this.state.ctr.Popup.styledComponentId);
-        b?PopupElem.classList.add(e):PopupElem.classList.remove(e);
+        const PopupElem = document.querySelector('.' + this.state.ctr.Popup.styledComponentId);
+        b ? PopupElem.classList.add(e) : PopupElem.classList.remove(e);
     }
 
     toggle(e) {
-        if(!this.state.open) {
-            const PopupElem = document.querySelector('.'+this.state.ctr.Popup.styledComponentId);
-            const activeElem = document.querySelector('.'+this.state.active);
+        if (!this.state.open) {
+            const PopupElem = document.querySelector('.' + this.state.ctr.Popup.styledComponentId);
+            const activeElem = document.querySelector('.' + this.state.active);
             (activeElem !== null) && (activeElem.classList.remove(this.state.active));
             PopupElem.classList.add(this.state.ctr.popupOn, this.state.active);
             let windowHeight = window.innerHeight;
-            const HeaderElem = document.querySelector('.'+this.state.ctr.Header.styledComponentId);
-            const FooterElem = document.querySelector('.'+this.state.ctr.Footer.styledComponentId);
-            const PositionElem = document.querySelector('.'+this.state.ctr.Position.styledComponentId);
-            const contentsElem = document.querySelector('.'+this.state.ctr.Contents.styledComponentId);
-            let contentsHeight = this.props.height?this.props.height:Math.ceil(contentsElem.scrollHeight);
-            const margin = (this.state.popupOuterPadding * 2) + (HeaderElem?this.state.headerHeight:0) + (FooterElem?this.state.footerHeight:0);
+            const HeaderElem = document.querySelector('.' + this.state.ctr.Header.styledComponentId);
+            const FooterElem = document.querySelector('.' + this.state.ctr.Footer.styledComponentId);
+            const PositionElem = document.querySelector('.' + this.state.ctr.Position.styledComponentId);
+            const contentsElem = document.querySelector('.' + this.state.ctr.Contents.styledComponentId);
+            let contentsHeight = this.props.height ? this.props.height : Math.ceil(contentsElem.scrollHeight);
+            const margin = (this.state.popupOuterPadding * 2) + (HeaderElem ? this.state.headerHeight : 0) + (FooterElem ? this.state.footerHeight : 0);
             let height = windowHeight - margin;
             const resize = () => {
-                contentsHeight = this.props.height?this.props.height:Math.ceil(contentsElem.scrollHeight);
-                if(PositionElem.style.height === contentsHeight) {
+                contentsHeight = this.props.height ? this.props.height : Math.ceil(contentsElem.scrollHeight);
+                if (PositionElem.style.height === contentsHeight) {
                     return false;
                 };
                 PopupElem.classList.remove(this.state.ctr.hasScroll);
@@ -341,7 +366,7 @@ export default class ClassPopup extends Component {
                 height = windowHeight - margin;
                 PositionElem.style.height = contentsHeight + 'px';
             };
-            this.setState({resize: resize});
+            this.setState({ resize: resize });
             (height < contentsHeight) && (PopupElem.classList.add(this.state.ctr.hasScroll));
             (HeaderElem !== null) && (PopupElem.classList.add(this.state.ctr.hasHeader));
             (FooterElem !== null) && (PopupElem.classList.add(this.state.ctr.hasFooter));
@@ -350,11 +375,11 @@ export default class ClassPopup extends Component {
                 open: true
             });
         } else {
-            const activeElem = document.querySelector('.'+this.state.active);
+            const activeElem = document.querySelector('.' + this.state.active);
             (activeElem !== null) && (activeElem.classList.remove(this.state.active));
-            const PopupElem = document.querySelector('.'+this.state.ctr.Popup.styledComponentId);
+            const PopupElem = document.querySelector('.' + this.state.ctr.Popup.styledComponentId);
             PopupElem.classList.add(this.state.ctr.popupOn);
-            const PositionElem = document.querySelector('.'+this.state.ctr.Position.styledComponentId);
+            const PositionElem = document.querySelector('.' + this.state.ctr.Position.styledComponentId);
             PositionElem.removeAttribute('style');
             PopupElem.classList.remove(this.state.ctr.popupOn, this.state.ctr.hasScroll, this.state.ctr.hasHeader, this.state.ctr.hasFooter);
             window.removeEventListener('resize', this.state.resize, true);
@@ -362,7 +387,7 @@ export default class ClassPopup extends Component {
                 open: false
             });
         };
-        if(typeof e === 'function') {
+        if (typeof e === 'function') {
             e();
         };
     }
@@ -379,40 +404,25 @@ export default class ClassPopup extends Component {
                 popupDivideBorderColor={this.state.popupDivideBorderColor}
             >
                 <h2>{this.props.title}</h2>
-                <a href="#" aria-hidden={!this.props.close} onClick={this.toggle.bind(this)}>팝업창 닫기</a>
+                <button aria-hidden={!this.props.close} onClick={this.toggle.bind(this)}>팝업창 닫기</button>
             </this.state.ctr.Header>;
         }
-        if (this.props.button !== undefined) {
-            let i = 0;
-            let button = [];
-            for (var e in this.props.button) {
-                i++;
-                let classname;
-                let onclick;
-                switch(e) {
-                    case 'positive': 
-                        classname = this.state.ctr.positiveBtn;
-                        onclick = this.props.button[e].function?this.props.button[e].function:this.toggle.bind(this, this.props.button[e].callback);
-                        break;
-                    case 'negative': 
-                        classname = this.state.ctr.negativeBtn;
-                        onclick = this.props.button[e].function?this.props.button[e].function:this.toggle.bind(this, this.props.button[e].callback);
-                        break;
-                    default: 
-                        classname = this.state.ctr.normalBtn;
-                        onclick = this.props.button[e].function?this.props.button[e].function:this.toggle.bind(this, this.props.button[e].callback);
-                }
-                button.push(<button key={'idx'+i} className={classname} onClick={onclick}>{this.props.button[e].text}</button>)
-            }
+        if (this.props.positiveBtn || this.props.negativeBtn) {
             footer = <this.state.ctr.Footer
                 footerHeight={this.state.footerHeight}
                 popupInnerPadding={this.state.popupInnerPadding}
                 popupBorderThick={this.state.popupBorderThick}
                 popupDivideBorderColor={this.state.popupDivideBorderColor}
             >
-                {button}
+                <div className={this.state.ctr.positiveBtn}>
+                    {this.props.positiveBtn}
+                </div>
+                <div className={this.state.ctr.negativeBtn}>
+                    {this.props.negativeBtn}
+                </div>
             </this.state.ctr.Footer>;
-        };
+        }
+
         return (
             <this.state.ctr.Popup
                 popupOuterPadding={this.state.popupOuterPadding}
@@ -435,8 +445,8 @@ export default class ClassPopup extends Component {
                     </this.state.ctr.Contents>
                     {footer}
                 </this.state.ctr.Position>
-                {this.props.close ? <this.state.ctr.Dim onClick={this.toggle.bind(this)}></this.state.ctr.Dim> :  <this.state.ctr.Dim></this.state.ctr.Dim> }
-                
+                {this.props.close ? <this.state.ctr.Dim onClick={this.toggle.bind(this)}></this.state.ctr.Dim> : <this.state.ctr.Dim></this.state.ctr.Dim>}
+
             </this.state.ctr.Popup>
         );
     }

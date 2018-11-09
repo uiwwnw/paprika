@@ -4,15 +4,17 @@ import * as Components from '../components/Components';
 import { store, action } from '../reducers/index.js';
 import commonStyle, { unit } from '../variables/style.js';
 import styled from 'styled-components';
-import {getPw} from '../../services/createCipher';
+import { getPw } from '../../services/createCipher';
 import { get } from '../../services/get';
+import config from '../../config';
 import { NavLink } from 'react-router-dom';
 
 class Login extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            popup: false,
+            loginSuccessPopup: false,
+            loginFailPopup: false,
             valid: true,
             id: null,
             pw: null,
@@ -20,11 +22,31 @@ class Login extends Component {
         this.submit = this.submit.bind(this);
         this.Login = styled.div`
             padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
+
+            label + a,
+            label + button {
+                margin-top: ${unit(20)};
+            }
+
+            a,
+            button {
+                display: block;
+                width: 100%;
+                margin-top: ${unit(4)};
+                line-height: ${unit(30)};
+                border: 0;
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+                background: #000;
+            }
         `;
     }
     submit() {
         if (this.state.valid) {
-            alert('아이디, 비밀번호를 다시확인해주세요')
+            this.setState({
+                loginFailPopup: !this.state.loginFailPopup
+            });
         } else {
             get('users?id=' + this.state.id)
             .then(response => {
@@ -38,7 +60,7 @@ class Login extends Component {
                         'userEmail': data.email,
                     }));
                     this.setState({
-                        popup: true
+                        loginSuccessPopup: !this.state.loginSuccessPopup
                     })
                     // console.log(location);
                     // location.pathname = '/mypage';
@@ -47,32 +69,57 @@ class Login extends Component {
                     // document.location.href = document.location.origin;
                     // window.history.back();
                 } else {
-                    alert('아이디, 비밀번호를 다시확인해주세요')
+                    this.setState({
+                        loginFailPopup: !this.state.loginFailPopup
+                    });
                 }
             })
             .catch(response => {
+                this.setState({
+                    loginFailPopup: !this.state.loginFailPopup
+                });
                 console.log(response, '로그인실패')
             });
         }
     }
+    kakaologin(){
+        // 로그인 창을 띄웁니다.
+        
+        Kakao.Auth.login({
+            success: function(authObj) {
+            alert(JSON.stringify(authObj));
+            },
+            fail: function(err) {
+            alert(JSON.stringify(err));
+            }
+        });
+    }
 
     render() {
+
+
         return (
             <this.Login>
-                <h1>login</h1>
+                <h2>login</h2>
+                <a id="kakao-login-btn"></a>
                 <Components.Input title="아이디" type="text" onInput={this.props.input.bind(this, 'id')} />
                 <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')}/>
-                {/* <input type="text" onInput={this.props.input.bind(this, 'id')} />
-                <input type="password" onInput={this.props.input.bind(this, 'pw')} /> */}
                 <button onClick={this.submit}>로그인하기</button>
-                <NavLink to="/mypage">회원가입</NavLink>
+                <NavLink to="/join">회원가입</NavLink>
                 <Components.Popup
-                    bool={this.state.popup} 
+                    bool={this.state.loginSuccessPopup} 
                     title="로그인성공" 
+                    positiveBtn={<NavLink to="/mypage">마이페이지</NavLink>}
+                    negativeBtn={<NavLink to="/">메인페이지</NavLink>}
                 >
-                    
-                    <NavLink to="/mypage">마이페이지로 이동하기</NavLink>
-                    <NavLink to="/">메인페이지로 이동하기</NavLink>
+                    로그인에 성공하였습니다.
+                </Components.Popup>
+                <Components.Popup
+                    bool={this.state.loginFailPopup} 
+                    title="로그인실패" 
+                    close={true}
+                >
+                    아이디, 비밀번호를 다시확인해주세요
                 </Components.Popup>
             </this.Login>
         )
