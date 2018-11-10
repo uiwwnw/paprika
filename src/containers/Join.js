@@ -55,7 +55,7 @@ class Join extends Component {
     // }
     submit() {
         // console.log( document.location);
-        if (this.state.valid) {
+        if (this.props.check.apply(this)) {
             this.setState({
                 joinFailPopup: !this.state.joinFailPopup,
                 joinFailPopupText: '모두 작성되지 않았습니다.'

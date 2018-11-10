@@ -44,7 +44,7 @@ class Login extends Component {
         `;
     }
     submit() {
-        if (this.state.valid) {
+        if (this.props.check.apply(this)) {
             this.setState({
                 loginFailPopup: !this.state.loginFailPopup,
                 loginFailPopupText: '입력창을 모두 채워주세요.'
@@ -112,7 +112,6 @@ class Login extends Component {
         return (
             <this.Login>
                 <h2>login</h2>
-                <a id="kakao-login-btn"></a>
                 <Components.Input title="아이디" type="text" onInput={this.props.input.bind(this, 'id')} />
                 <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')} />
                 <button onClick={this.submit}>로그인하기</button>

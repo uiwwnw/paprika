@@ -8,29 +8,21 @@ const LoginJoin = (Component) => {
             this.setState({
                 [t]: e.target.value.length > 0?cipher:null
             });
-            const validIdx = Number(Object.keys(this.state).indexOf('valid') + 1);
-            if (Object.values(this.state).indexOf(null, validIdx) === -1) {
-                this.setState({
-                    valid: false
-                });
-            } else {
-                this.setState({
-                    valid: true
-                });
-            }
         };
 
         check() {
             const validIdx = Number(Object.keys(this.state).indexOf('valid') + 1);
-            if (Object.values(this.state).indexOf(null, validIdx) === -1) {
-                this.setState({
-                    valid: false
-                });
-            } else {
-                this.setState({
-                    valid: true
-                });
-            }
+            const value = Object.values(this.state).indexOf(null, validIdx) === -1;
+            return !value;
+            // if (Object.values(this.state).indexOf(null, validIdx) === -1) {
+            //     this.setState({
+            //         valid: false
+            //     });
+            // } else {
+            //     this.setState({
+            //         valid: true
+            //     });
+            // }
         }
     
         render() {
