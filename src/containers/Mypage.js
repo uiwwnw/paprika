@@ -51,12 +51,12 @@ export default class Mypage extends Component {
             <this.Mypage>
                 <h2>mypage</h2>
                 <h3>{this.state.userName}</h3>
-                {this.state.propsitions?<Components.List positions={this.state.propsitions} />:''}
+                {this.state.propsitions?<Components.List className="editAble" positions={this.state.propsitions} />:''}
                 <Components.Popup 
                     bool={this.state.noLoginPopup}
                     title="로그인 안내 메세지"
                     positiveBtn={<NavLink to="/login">로그인</NavLink>}
-                    negativeBtn={<NavLink to="/login">회원가입</NavLink>}
+                    negativeBtn={<NavLink to="/join">회원가입</NavLink>}
                 >
                     아직, 로그인 전입니다.<br/>
                     파프리카의 서비스 이용을 위해 <br/>

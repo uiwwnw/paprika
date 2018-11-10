@@ -26,6 +26,7 @@ export default class Input extends Component {
                 height: ${unit(30)};
                 margin: 0;
                 padding: 0 ${unit(4)};
+                color: #000;
                 box-sizing: border-box;
                 flex: 1;
                 transition: .6s;
@@ -64,10 +65,11 @@ export default class Input extends Component {
                 {this.props.title?<span>{this.props.title}</span>:''}
                 <input 
                     type={this.props.type?this.props.type:'text'} 
-                    name={this.props.name?this.props.name:''} 
+                    name={this.props.name?this.props.name:this.props.title} 
                     onInput={this.props.onInput} 
                     onFocus={this.focus}
                     onBlur={this.blur}
+                    // onChange={this.props.onInput}
                 />
             </this.Input>
         )

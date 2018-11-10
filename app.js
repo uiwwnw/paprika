@@ -13,10 +13,10 @@ import { store, action } from './src/reducers/index.js';
 import styled from 'styled-components';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser } from '@fortawesome/free-solid-svg-icons';
+import { faUser, faPencilAlt, faHistory } from '@fortawesome/free-solid-svg-icons';
 import 'normalize.css';
 
-library.add(faUser);
+library.add(faUser, faPencilAlt, faHistory);
 
 class App extends Component {
     componentWillMount() {
@@ -28,10 +28,6 @@ class App extends Component {
             color: #fff;
             background: #793038;
 
-            h2 {
-                margin: 0;
-            }
-
             &:before {
                 display: block;
                 overflow: hidden;
@@ -41,6 +37,13 @@ class App extends Component {
                 display: block;
                 overflow: hidden;
                 content: "";
+            }
+
+            button ,
+            a ,
+            input {
+                color: inherit;
+                font: inherit;
             }
         `;
        

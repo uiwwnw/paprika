@@ -15,6 +15,7 @@ class Login extends Component {
         this.state = {
             loginSuccessPopup: false,
             loginFailPopup: false,
+            loginFailPopupText: '',
             valid: true,
             id: null,
             pw: null,
@@ -45,12 +46,20 @@ class Login extends Component {
     submit() {
         if (this.state.valid) {
             this.setState({
-                loginFailPopup: !this.state.loginFailPopup
+                loginFailPopup: !this.state.loginFailPopup,
+                loginFailPopupText: '입력창을 모두 채워주세요.'
             });
         } else {
             get('users?id=' + this.state.id)
             .then(response => {
                 const data = response.data[0];
+                if (data === undefined) {
+                    this.setState({
+                        loginFailPopup: !this.state.loginFailPopup,
+                        loginFailPopupText: '아이디를 찾을 수 없습니다.'
+                    });
+                    return false;
+                }
                 if (data.pw === this.state.pw) {
                     console.log('로그인에성공했습니다.');
                     store.dispatch(action.userInfo('USERINFO', {
@@ -70,13 +79,15 @@ class Login extends Component {
                     // window.history.back();
                 } else {
                     this.setState({
-                        loginFailPopup: !this.state.loginFailPopup
+                        loginFailPopup: !this.state.loginFailPopup,
+                        loginFailPopupText: '비밀번호가 틀렸습니다. 다시 확인해주세요.'
                     });
                 }
             })
             .catch(response => {
                 this.setState({
-                    loginFailPopup: !this.state.loginFailPopup
+                    loginFailPopup: !this.state.loginFailPopup,
+                    loginFailPopupText: '서버상 문제로 로그인에 실패하였습니다.'
                 });
                 console.log(response, '로그인실패')
             });
@@ -103,12 +114,11 @@ class Login extends Component {
                 <h2>login</h2>
                 <a id="kakao-login-btn"></a>
                 <Components.Input title="아이디" type="text" onInput={this.props.input.bind(this, 'id')} />
-                <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')}/>
+                <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')} />
                 <button onClick={this.submit}>로그인하기</button>
                 <NavLink to="/join">회원가입</NavLink>
                 <Components.Popup
                     bool={this.state.loginSuccessPopup} 
-                    title="로그인성공" 
                     positiveBtn={<NavLink to="/mypage">마이페이지</NavLink>}
                     negativeBtn={<NavLink to="/">메인페이지</NavLink>}
                 >
@@ -116,10 +126,9 @@ class Login extends Component {
                 </Components.Popup>
                 <Components.Popup
                     bool={this.state.loginFailPopup} 
-                    title="로그인실패" 
                     close={true}
                 >
-                    아이디, 비밀번호를 다시확인해주세요
+                    {this.state.loginFailPopupText}
                 </Components.Popup>
             </this.Login>
         )

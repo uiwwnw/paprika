@@ -64,7 +64,7 @@ export default class Main extends Component {
                 <h2>Lorem ipsum dolor sit amet.</h2>
                 {this.state.positions?<Components.List positions={this.state.positions} />:''}
                 {/* <Item name="강남교보문고뒤" /> */}
-                <Map height={unit(store.getState().windowHeight)} />
+                {/* <Map height={unit(store.getState().windowHeight)} /> */}
                 
             </this.Main>
         )
