@@ -58,7 +58,7 @@ class Header extends Component {
         return (
             <this.Header aria-hidden={!this.props.visible}>
                 <article>
-                    <h1><NavLink to="/">paprika</NavLink></h1>
+                    <h1><NavLink to="/">parkprika</NavLink></h1>
                     <NavLink to="/mypage" className="link">
                         <FontAwesomeIcon icon="user" />
                     </NavLink>

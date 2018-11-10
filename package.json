@@ -1,7 +1,7 @@
 {
-  "name": "paprika",
+  "name": "parkprika",
   "version": "1.0.1",
-  "description": "https://github.com/uiwwnw/paprika.git",
+  "description": "https://github.com/uiwwnw/parkprika.git",
   "main": "index.js",
   "scripts": {
     "start": "npm run clean && webpack -p && npm run server",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/uiwwnw/paprika"
+    "url": "https://github.com/uiwwnw/parkprika"
   },
   "author": "uiwwnw(uiwwnw@icloud.com)",
   "license": "ISC",

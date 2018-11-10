@@ -9,7 +9,7 @@ var MongoClient = require('mongodb').MongoClient;
 
 
 MongoClient.connect(config.dburl, function (err, database) {
-    var myAwesomeDB = database.db('paprika')
+    var myAwesomeDB = database.db('parkprika')
     // var jordan = { name: 'Jordan', age: 16, gender: 'M' };
     // var amanda = { name: 'Amanda', age: 17, gender: 'F' };
     // var jessica = { name: 'Jessica', age: 15, gender: 'F' };
