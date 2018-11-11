@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import commonStyle, { unit } from '../variables/style.js';
-import noImg from '../image/no.png';
+import noImg from '../image/no.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default class Item extends Component {
@@ -11,10 +11,9 @@ export default class Item extends Component {
         this.Item = styled.div`
             display: flex;
             position: relative;
-            margin: ${commonStyle.paddingVertical} 0;
-            padding: ${commonStyle.paddingVertical} 0;
+            padding: ${unit(10)} 0;
             align-items: center;
-            border-top: ${unit(1)} solid #fff;
+            border-top: ${unit(1)} solid #eee;
 
             &:first-child {
                 margin-top: -${unit(1)};
@@ -32,6 +31,22 @@ export default class Item extends Component {
 
             .infoWrap {
                 flex: 100%;
+                align-self: start;
+
+                h4 {
+                    margin: 0 0 ${unit(10)};
+                    font-size: ${unit(18)};
+                    font-weight: 700;
+                }
+
+                strong {
+                    font-weight: 500;
+                    color: #000;
+                }
+
+                span {
+                    color: #555;
+                }
             }
 
             .historyBtn {
@@ -53,15 +68,17 @@ export default class Item extends Component {
             }
 
             .imgWrap {
+                overflow: hidden;
                 display: flex;
-                padding-right: ${commonStyle.paddingHorizone};
                 flex-basis: ${unit(150)};
+                margin-right: ${commonStyle.paddingHorizone};
+                border-radius: ${unit(10)};
+                border: ${unit(1)} solid #eee;
                 align-items: center;
 
                 img {
-                    display: inline-block;
+                    display: block;
                     width: 100%;
-                    font-variant-numeric
                 }
             }
 
@@ -69,6 +86,7 @@ export default class Item extends Component {
                 display: flex;
                 width: ${unit(40)};
                 height: ${unit(80)};
+                border: 0;
                 font-size: ${unit(16)};
                 white-space: nowrap;
                 color: #000;
@@ -79,6 +97,7 @@ export default class Item extends Component {
                 display: none;
                 width: ${unit(40)};
                 height: ${unit(80)};
+                border: 0;
                 font-size: ${unit(16)};
                 white-space: nowrap;
                 color: #fff;
@@ -93,11 +112,11 @@ export default class Item extends Component {
                 <span className="imgWrap"><img src={this.props.src?this.props.src:noImg} alt={this.props.title} /></span>
                 <div className="infoWrap">
                     <h4>{this.props.title}</h4>
-                    <strong>{this.props.price}/10분</strong>
+                    <strong>{this.props.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")}원/10분</strong>
                     {this.props.min?<span>최소 {this.props.min}분 사용</span>:''}
                 </div>
-                <button className="applyBtn">구매</button>
-                <button className="editBtn">편집</button>
+                {/* <button className="applyBtn">구매</button>
+                <button className="editBtn">편집</button> */}
             </this.Item>
         )
     }

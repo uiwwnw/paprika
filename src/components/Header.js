@@ -24,8 +24,8 @@ class Header extends Component {
                 padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
                 box-sizing: border-box;
                 font-size: ${unit(12)};
-                color: #000;
-                background: rgba(255, 255, 255, .9);
+                color: #fff;
+                background: #793038;
 
                 > * {
                     flex: 1;

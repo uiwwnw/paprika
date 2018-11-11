@@ -14,4 +14,3 @@ const style = {
 
 export {unit};
 export default style;
-

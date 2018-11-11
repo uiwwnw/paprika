@@ -2,37 +2,51 @@ import React, { Component } from 'react';
 import * as Components from '../components/Components';
 import commonStyle, { unit } from '../variables/style.js';
 import { store, action } from '../reducers/index.js';
+import InputValid from '../hoc/containers';
 import styled from 'styled-components';
 import { getPw } from '../../services/createCipher';
 import { get } from '../../services/get';
 // import { positions } from '../../data/index.json';
 import { NavLink } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-
-
-export default class Mypage extends Component {
+class Mypage extends Component {
     constructor(props) {
         super(props);
+        this.edit = this.edit.bind(this);
         this.state = {
             userName: store.getState().userName,
             userId: store.getState().userId,
             userPw: store.getState().userPw,
             userEmail: store.getState().userEmail,
+            edit: false,
             noLoginPopup: false,
-            positions: null
+            positions: null,
+            valid: true,
+            name: null,
+            pw: null,
+            rpw: null,
+            email: null
         };
         this.Mypage = styled.div`
             padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
+
+            h3 {
+                .editBtn {
+                    float: right;
+                }
+            }
         `;
+    }
+    edit() {
+        this.setState({
+            edit: true
+        })
     }
 
     componentDidMount(){
         // console.log(store.getState().userName);
         this.setState({
-            userName: store.getState().userName,
-            userId: store.getState().userId,
-            userPw: store.getState().userPw,
-            userEmail: store.getState().userEmail,
             noLoginPopup: this.state.userName === null?true:false
         });
         get('positions?owner=' + this.state.userId)
@@ -47,11 +61,20 @@ export default class Mypage extends Component {
     }
 
     render() {
+        
         return (
             <this.Mypage>
                 <h2>mypage</h2>
-                <h3>{this.state.userName}</h3>
-                {this.state.propsitions?<Components.List className="editAble" positions={this.state.propsitions} />:''}
+                {this.state.userName&&!this.state.edit?<h3>{this.state.userName}<button onClick={this.edit} className="editBtn"><FontAwesomeIcon icon="pencil-alt"></FontAwesomeIcon></button></h3>:''}
+                {this.state.propsitions&&!this.state.edit?<Components.List className="editAble" positions={this.state.propsitions} />:''}
+                {this.state.edit?
+                <div>
+                    <Components.Input title="이름" type="text" onInput={this.props.input.bind(this, 'name')} />
+                    <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')} />
+                    <Components.Input title="비밀번호확인" type="password" onInput={this.props.input.bind(this, 'rpw')} />
+                    <Components.Input title="이메일" type="email" onInput={this.props.input.bind(this, 'email')} />
+                </div>
+                :''}
                 <Components.Popup 
                     bool={this.state.noLoginPopup}
                     title="로그인 안내 메세지"
@@ -66,3 +89,7 @@ export default class Mypage extends Component {
         )
     }
 }
+
+const withHocMypage = InputValid(Mypage);
+
+export default withHocMypage;

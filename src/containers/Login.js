@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoginJoin from '../hoc/containers';
+import InputValid from '../hoc/containers';
 import * as Components from '../components/Components';
 import { store, action } from '../reducers/index.js';
 import commonStyle, { unit } from '../variables/style.js';
@@ -133,6 +133,6 @@ class Login extends Component {
         )
     }
 }
-const withHocLogin = LoginJoin(Login);
+const withHocLogin = InputValid(Login);
 
 export default withHocLogin;

@@ -16,7 +16,7 @@ export default class Input extends Component {
                 position: absolute;
                 padding-left: ${unit(10)};
                 line-height: ${unit(30)};
-                color: #000;
+                color: #ddd;
                 pointer-events: none;
                 transition: .6s;
             }
@@ -26,11 +26,11 @@ export default class Input extends Component {
                 height: ${unit(30)};
                 margin: 0;
                 padding: 0 ${unit(4)};
+                border: ${unit(1)} solid #000;
                 color: #000;
                 box-sizing: border-box;
                 flex: 1;
                 transition: .6s;
-                border: 0;
             }
 
             &.focus {
@@ -39,7 +39,11 @@ export default class Input extends Component {
                 span {
                     position: static;
                     padding-right: ${unit(10)};
-                    color: #fff;
+                    color: #000;
+                }
+
+                input {
+                    /* border: 0; */
                 }
             }
         `;
@@ -69,6 +73,7 @@ export default class Input extends Component {
                     onInput={this.props.onInput} 
                     onFocus={this.focus}
                     onBlur={this.blur}
+                    onBlur={this.props.onChange}
                     // onChange={this.props.onInput}
                 />
             </this.Input>

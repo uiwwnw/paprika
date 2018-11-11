@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import scriptjs from 'scriptjs';
 import config from '../../config';
 import { positions } from '../../data/index.json';
+// let daum;
+// scriptjs('//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi + '&libraries=services');
+// script('//dapi.kakao.com/v2/maps/sdk.js?appkey=d800cd9a3ef7f463dc8064fd37d15106&libraries=services', () => {
+//     // const daum = document.createElement('script');
+//     // daum.setAttribute('src', '//dapi.kakao.com/v2/maps/sdk.js?appkey=d800cd9a3ef7f463dc8064fd37d15106&libraries=services');
+//     // document.getElementById('root').prepend(daum);
+// })
 
 export default class Maps extends Component {
     constructor(props) {
@@ -41,34 +49,33 @@ export default class Maps extends Component {
                 image: markerImage // 마커 이미지 
             });
         };
-        // var geocoder = new daum.maps.services.Geocoder();
-        // // 주소로 좌표를 검색합니다
-        // geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
+        var geocoder = new daum.maps.services.Geocoder();
+        // 주소로 좌표를 검색합니다
+        geocoder.addressSearch('제주특별자치도 제주시 첨단로 242', function(result, status) {
 
-        //     // 정상적으로 검색이 완료됐으면 
-        //     if (status === daum.maps.services.Status.OK) {
+            // 정상적으로 검색이 완료됐으면 
+            if (status === daum.maps.services.Status.OK) {
 
-        //         var coords = new daum.maps.LatLng(result[0].y, result[0].x);
+                var coords = new daum.maps.LatLng(result[0].y, result[0].x);
 
-        //         // 결과값으로 받은 위치를 마커로 표시합니다
-        //         var marker = new daum.maps.Marker({
-        //             map: map,
-        //             position: coords
-        //         });
+                // 결과값으로 받은 위치를 마커로 표시합니다
+                var marker = new daum.maps.Marker({
+                    map: map,
+                    position: coords
+                });
 
-        //         // 인포윈도우로 장소에 대한 설명을 표시합니다
-        //         var infowindow = new daum.maps.InfoWindow({
-        //             content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-        //         });
-        //         infowindow.open(map, marker);
+                // 인포윈도우로 장소에 대한 설명을 표시합니다
+                var infowindow = new daum.maps.InfoWindow({
+                    content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+                });
+                infowindow.open(map, marker);
 
-        //         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
-        //         map.setCenter(coords);
-        //     } 
-        // }); 
+                // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+                map.setCenter(coords);
+            } 
+        }); 
     }
     mapFind() {
-        var _this = this;
         if (navigator.geolocation) { // GPS를 지원하면
             navigator.geolocation.getCurrentPosition(function (position) {
                 _this.mapInit(position.coords.latitude, position.coords.longitude);
@@ -83,18 +90,14 @@ export default class Maps extends Component {
             alert('GPS를 지원하지 않습니다');
         }
     }
-    // componentWillMount() {
-    //     const scriptjs = require('scriptjs');
-    //     const _this = this;
-    //     scriptjs('//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi, function(e) {
-    //         _this.setState({
-    //             daum: window.daum
-    //         });
-    //     });
-    // //     // daumMap.setAttribute('type', 'text/javascript');
-    // //     // daumMap.setAttribute('src', '//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi);
-    // //     // document.getElementById('root').prepend(daumMap);
-    // }
+    componentWillMount() {
+        // scriptjs('//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi + '&libraries=services', this.mapInit);
+        
+        // scriptjs('//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi + '&libraries=services');
+    //     // daumMap.setAttribute('type', 'text/javascript');
+    //     // daumMap.setAttribute('src', '//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi);
+    //     // document.getElementById('root').prepend(daumMap);
+    }
     componentDidMount() {
         if (window.daum !== undefined) {
             this.mapInit();

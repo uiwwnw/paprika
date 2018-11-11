@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import LoginJoin from '../hoc/containers';
+import InputValid from '../hoc/containers';
 import * as Components from '../components/Components';
 import { store, action } from '../reducers/index.js';
 import commonStyle, { unit } from '../variables/style.js';
@@ -17,13 +17,29 @@ class Join extends Component {
         this.state = {
             joinSuccessPopup: false,
             joinFailPopup: false,
-            joinFailPopupText: '',
-            valid: true,
-            id: null,
-            pw: null,
-            rpw: null,
-            email: null,
-            name: null
+            joinFailPopupText: '입력창이 비어있습니다.',
+            valid: {
+                id: {
+                    value: null,
+                    alert: null
+                },
+                pw: {
+                    value: null,
+                    alert: null
+                },
+                rpw: {
+                    value: null,
+                    alert: null
+                },
+                email: {
+                    value: null,
+                    alert: null
+                },
+                name: {
+                    value: null,
+                    alert: null
+                }
+            }
         };
         this.submit = this.submit.bind(this);
         this.Join = styled.div`
@@ -56,57 +72,41 @@ class Join extends Component {
     submit() {
         // console.log( document.location);
         if (this.props.check.apply(this)) {
-            this.setState({
-                joinFailPopup: !this.state.joinFailPopup,
-                joinFailPopupText: '모두 작성되지 않았습니다.'
+            let alert;
+            Object.values(this.state.valid).map((e)=>{
+                if (e.alert !== null) {
+                    alert = e.alert;
+                }
             });
-        } else if (this.state.pw !== this.state.rpw) {
             this.setState({
                 joinFailPopup: !this.state.joinFailPopup,
-                joinFailPopupText: '비밀번호가 동일하지 않습니다.'
+                joinFailPopupText: alert === undefined?this.state.joinFailPopupText:alert
             });
         } else {
-            get('users?id=' + this.state.id)
-            .then(response => {
-                const data = response.data[0];
-                if(data.id === this.state.id) {
-                    this.setState({
-                        joinFailPopup: !this.state.joinFailPopup,
-                        joinFailPopupText: '동일한 아이디가 존재합니다.'
-                    });
-                    return false;
-                }
+            post('users/', {
+                'id': this.state.valid.id.value,
+                'pw': this.state.valid.pw.value,
+                'email': this.state.valid.email.value,
+                'name': this.state.valid.name.value
             })
-            .catch(response => {
-                post('users/', {
-                    'id': this.state.id,
-                    'pw': this.state.pw,
-                    'email': this.state.email,
-                    'name': this.state.name
-                })
-                .then(response => {
-                    store.dispatch(action.userInfo('USERINFO', {
-                        'joined': true,
-                    }));
-                    this.setState({
-                        joinSuccessPopup: !this.state.joinSuccessPopup
-                    });
-                    
-                })
-                .catch(response => {
-                    console.log(response, '회원가입실패')
-                });
+            .then(() => {
+                store.dispatch(action.userInfo('USERINFO', {
+                    'joined': true,
+                }));
+                alert('회원가입이 완료되었습니다.');
+                location.pathname = '/login';
+            })
+            .catch((response) => {
+                console.log(response);
             });
-            // if(this.state.id === )
-            
         }
     }
 
     render() {
         return (
             <this.Join>
-                <h2>login</h2>
-                <Components.Input title="이름" type="text" onInput={this.props.input.bind(this, 'name')}/>
+                <h2>join</h2>
+                <Components.Input title="이름" type="text" onInput={this.props.input.bind(this, 'name')} />
                 <Components.Input title="아이디" type="text" onInput={this.props.input.bind(this, 'id')} />
                 <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')}/>
                 <Components.Input title="비밀번호확인" type="password" onInput={this.props.input.bind(this, 'rpw')}/>
@@ -115,8 +115,9 @@ class Join extends Component {
                 <input type="password" onInput={this.props.input.bind(this, 'pw')} /> */}
                 <Components.Popup
                     bool={this.state.joinSuccessPopup} 
-                    positiveBtn={<NavLink to="/login">로그인페이지</NavLink>}
-                    negativeBtn={<NavLink to="/">메인페이지</NavLink>}
+                    // width="250"
+                    // positiveBtn={<NavLink to="/login">로그인페이지</NavLink>}
+                    // negativeBtn={<NavLink to="/">메인페이지</NavLink>}
                 >
                     회원가입성공
                 </Components.Popup>
@@ -131,6 +132,6 @@ class Join extends Component {
         )
     }
 }
-const withHocJoin = LoginJoin(Join);
+const withHocJoin = InputValid(Join);
 
 export default withHocJoin;
