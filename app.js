@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
+import scriptjs from 'scriptjs';
 import { render } from 'react-dom';
+import config from './config';
 // import Header from './src/components/Header';
 // import Footer from './src/components/Footer';
 import * as Components from './src/components/Components';
@@ -20,13 +22,18 @@ library.add(faUser, faPencilAlt, faHistory);
 
 class App extends Component {
     componentWillMount() {
+        // scriptjs('//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi + '&libraries=services', aaa);
         store.dispatch(action.change('WINDOWHEIGHT', window.outerHeight));
     }
+    // componentDidMount() {
+    //     scriptjs('//dapi.kakao.com/v2/maps/sdk.js?appkey=d800cd9a3ef7f463dc8064fd37d15106&libraries=services', () => {
+    //         window.daum = daum;
+    //     });
+    // }
     render() {
         const Index = styled.main`
             min-height: 100vh;
-            color: #fff;
-            background: #793038;
+            /* color: #fff; */
 
             &:before {
                 display: block;
