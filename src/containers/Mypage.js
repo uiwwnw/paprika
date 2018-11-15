@@ -4,7 +4,9 @@ import commonStyle, { unit } from '../variables/style.js';
 import { store, action } from '../reducers/index.js';
 import InputValid from '../hoc/containers';
 import styled from 'styled-components';
-import { getPw } from '../../services/createCipher';
+import { setPw } from '../../services/createCipher';
+import { patch } from '../../services/patch';
+import { put } from '../../services/put';
 import { get } from '../../services/get';
 // import { positions } from '../../data/index.json';
 import { NavLink } from 'react-router-dom';
@@ -22,11 +24,24 @@ class Mypage extends Component {
             edit: false,
             noLoginPopup: false,
             positions: null,
-            valid: true,
-            name: null,
-            pw: null,
-            rpw: null,
-            email: null
+            valid: {
+                pw: {
+                    value: null,
+                    alert: null
+                },
+                rpw: {
+                    value: null,
+                    alert: null
+                },
+                email: {
+                    value: null,
+                    alert: null
+                },
+                name: {
+                    value: null,
+                    alert: null
+                }
+            }
         };
         this.Mypage = styled.div`
             padding: ${commonStyle.paddingVertical} ${commonStyle.paddingHorizone};
@@ -36,11 +51,44 @@ class Mypage extends Component {
                     float: right;
                 }
             }
+
+            .editConfirmBtn {
+                display: block;
+                width: 100%;
+                margin-top: ${unit(4)};
+                line-height: ${unit(30)};
+                border: 0;
+                text-align: center;
+                text-decoration: none;
+                color: #fff;
+                background: #000;
+            }
         `;
     }
     edit() {
+        if (this.state.edit) {
+            if (this.props.check.apply(this)) {
+                let alert = null;
+                Object.values(this.state.valid).map((e)=>{
+                    if (e.alert !== true && e.alert !== null) {
+                        alert = e.alert;
+                    }
+                });
+                // this.setState({
+                //     joinFailPopup: !this.state.joinFailPopup,
+                //     joinFailPopupText: alert === null?'입력창이 비어있습니다.':alert
+                // });
+            } else {
+                put('users/'+this.state.userId, {
+                    'id': this.state.userId,
+                    'pw': this.state.valid.pw.value,
+                    'email': this.state.valid.email.value,
+                    'name': this.state.valid.name.value
+                })
+            }
+        };
         this.setState({
-            edit: true
+            edit: !this.state.edit
         })
     }
 
@@ -69,10 +117,11 @@ class Mypage extends Component {
                 {this.state.propsitions&&!this.state.edit?<Components.List className="editAble" positions={this.state.propsitions} />:''}
                 {this.state.edit?
                 <div>
-                    <Components.Input title="이름" type="text" onInput={this.props.input.bind(this, 'name')} />
+                    <Components.Input title="이름" type="text" onInput={this.props.input.bind(this, 'name')} placeholder={this.state.userName} />
                     <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')} />
                     <Components.Input title="비밀번호확인" type="password" onInput={this.props.input.bind(this, 'rpw')} />
-                    <Components.Input title="이메일" type="email" onInput={this.props.input.bind(this, 'email')} />
+                    <Components.Input title="이메일" type="email" onInput={this.props.input.bind(this, 'email')} placeholder={this.state.userEmail} />
+                    <button className="editConfirmBtn" onClick={this.edit}>수정</button>
                 </div>
                 :''}
                 <Components.Popup 

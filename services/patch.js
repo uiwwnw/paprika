@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-export function post(url, data) {
+export function patch(url, data) {
     return axios({
-        method: 'post',
+        method: 'patch',
         url: 'http://localhost:3000/' + url,
         data
     }).then( response => { return response } ) // SUCCESS

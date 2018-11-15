@@ -1,6 +1,7 @@
 const unit = (unit) => {
     return (unit / 16).toFixed(5) + 'rem';
 };
+
 const style = {
     zIndex: {
         header: 100

@@ -16,9 +16,16 @@ class Login extends Component {
             loginSuccessPopup: false,
             loginFailPopup: false,
             loginFailPopupText: '',
-            valid: true,
-            id: null,
-            pw: null,
+            valid: {
+                id: {
+                    value: null,
+                    alert: null
+                },
+                pw: {
+                    value: null,
+                    alert: null
+                }
+            }
         };
         this.submit = this.submit.bind(this);
         this.Login = styled.div`
@@ -45,14 +52,20 @@ class Login extends Component {
     }
     submit() {
         if (this.props.check.apply(this)) {
+            let alert = null;
+            Object.values(this.state.valid).map((e)=>{
+                if (e.alert !== true && e.alert !== null) {
+                    alert = e.alert;
+                }
+            });
             this.setState({
                 loginFailPopup: !this.state.loginFailPopup,
-                loginFailPopupText: '입력창을 모두 채워주세요.'
+                loginFailPopupText: alert === null?'입력창이 비어있습니다.':alert
             });
         } else {
-            get('users?id=' + this.state.id)
+            get('users/' + this.state.valid.id.value)
             .then(response => {
-                const data = response.data[0];
+                const data = response.data;
                 if (data === undefined) {
                     this.setState({
                         loginFailPopup: !this.state.loginFailPopup,
@@ -60,11 +73,10 @@ class Login extends Component {
                     });
                     return false;
                 }
-                if (data.pw === this.state.pw) {
-                    console.log('로그인에성공했습니다.');
+                if (data.pw === this.state.valid.pw.value) {
                     store.dispatch(action.userInfo('USERINFO', {
-                        'userId': getPw(data.id),
-                        'userName': getPw(data.name),
+                        'userId': data.id,
+                        'userName': data.name,
                         'userPw': data.pw,
                         'userEmail': data.email,
                     }));

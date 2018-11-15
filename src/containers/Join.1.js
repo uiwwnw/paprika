@@ -74,24 +74,22 @@ class Join extends Component {
         if (this.props.check.apply(this)) {
             let alert = null;
             Object.values(this.state.valid).map((e)=>{
-                if (e.alert !== true && e.alert !== null) {
+                if (e.alert !== null) {
                     alert = e.alert;
                 }
             });
-            console.log(this.state.valid);
             this.setState({
                 joinFailPopup: !this.state.joinFailPopup,
                 joinFailPopupText: alert === null?'입력창이 비어있습니다.':alert
             });
         } else {
-            post('users', {
+            post('users/', {
                 'id': this.state.valid.id.value,
                 'pw': this.state.valid.pw.value,
                 'email': this.state.valid.email.value,
                 'name': this.state.valid.name.value
             })
-            .then((response) => {
-                console.log(response);
+            .then(() => {
                 store.dispatch(action.userInfo('USERINFO', {
                     'joined': true,
                 }));

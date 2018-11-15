@@ -5,6 +5,7 @@ export function put(url, data) {
         method: 'put',
         url: 'http://localhost:3000/' + url,
         data
-    })
+    }).then( response => { return response } ) // SUCCESS
+    .catch( response => { return response } ); // ERROR
 };
  
