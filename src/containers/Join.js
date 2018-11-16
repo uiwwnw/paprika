@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InputValid from '../hoc/containers';
 import * as Components from '../components/Components';
 import { store, action } from '../reducers/index.js';
-import commonStyle, { unit } from '../variables/style.js';
+import commonStyle, { unit, sc } from '../variables/style.js';
 import styled from 'styled-components';
 import { getPw } from '../../services/createCipher';
 import { get } from '../../services/get';
@@ -49,19 +49,6 @@ class Join extends Component {
             label + button {
                 margin-top: ${unit(20)};
             }
-
-            a,
-            button {
-                display: block;
-                width: 100%;
-                margin-top: ${unit(4)};
-                line-height: ${unit(30)};
-                border: 0;
-                text-align: center;
-                text-decoration: none;
-                color: #fff;
-                background: #000;
-            }
         `;
     }
     // componentWillMount(){
@@ -78,7 +65,7 @@ class Join extends Component {
                     alert = e.alert;
                 }
             });
-            console.log(this.state.valid);
+            // console.log(this.state.valid);
             this.setState({
                 joinFailPopup: !this.state.joinFailPopup,
                 joinFailPopupText: alert === null?'입력창이 비어있습니다.':alert
@@ -91,12 +78,12 @@ class Join extends Component {
                 'name': this.state.valid.name.value
             })
             .then((response) => {
-                console.log(response);
+                this.setState({
+                    joinSuccessPopup: !this.state.joinSuccessPopup
+                });
                 store.dispatch(action.userInfo('USERINFO', {
                     'joined': true,
                 }));
-                alert('회원가입이 완료되었습니다.');
-                location.pathname = '/login';
             })
             .catch((response) => {
                 console.log(response);
@@ -117,11 +104,11 @@ class Join extends Component {
                 <input type="password" onInput={this.props.input.bind(this, 'pw')} /> */}
                 <Components.Popup
                     bool={this.state.joinSuccessPopup} 
-                    // width="250"
-                    // positiveBtn={<NavLink to="/login">로그인페이지</NavLink>}
-                    // negativeBtn={<NavLink to="/">메인페이지</NavLink>}
+                    width="250"
+                    positiveBtn={<NavLink to="/login">로그인페이지</NavLink>}
+                    negativeBtn={<NavLink to="/">메인페이지</NavLink>}
                 >
-                    회원가입성공
+                    회원가입완료하였습니다.
                 </Components.Popup>
                 <Components.Popup
                     bool={this.state.joinFailPopup} 
@@ -129,7 +116,7 @@ class Join extends Component {
                 >
                     {this.state.joinFailPopupText}
                 </Components.Popup>
-                <button onClick={this.submit}>회원가입</button>
+                <sc.FullBtn onClick={this.submit}>회원가입</sc.FullBtn>
             </this.Join>
         )
     }

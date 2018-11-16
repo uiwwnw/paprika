@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as Components from '../components/Components';
-import commonStyle, { unit } from '../variables/style.js';
+import commonStyle, { unit, sc } from '../variables/style.js';
 import { store, action } from '../reducers/index.js';
 import InputValid from '../hoc/containers';
 import styled from 'styled-components';
@@ -51,18 +51,6 @@ class Mypage extends Component {
                     float: right;
                 }
             }
-
-            .editConfirmBtn {
-                display: block;
-                width: 100%;
-                margin-top: ${unit(4)};
-                line-height: ${unit(30)};
-                border: 0;
-                text-align: center;
-                text-decoration: none;
-                color: #fff;
-                background: #000;
-            }
         `;
     }
     edit() {
@@ -85,6 +73,13 @@ class Mypage extends Component {
                     'email': this.state.valid.email.value,
                     'name': this.state.valid.name.value
                 })
+                .then((response) => {
+                    console.log(response, 'tjdrhd');
+                })
+                .catch((response) => {
+                    console.log(response, 'PUT실패');
+                });
+                
             }
         };
         this.setState({
@@ -121,7 +116,7 @@ class Mypage extends Component {
                     <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')} />
                     <Components.Input title="비밀번호확인" type="password" onInput={this.props.input.bind(this, 'rpw')} />
                     <Components.Input title="이메일" type="email" onInput={this.props.input.bind(this, 'email')} placeholder={this.state.userEmail} />
-                    <button className="editConfirmBtn" onClick={this.edit}>수정</button>
+                    <sc.FullBtn onClick={this.edit}>수정</sc.FullBtn>
                 </div>
                 :''}
                 <Components.Popup 

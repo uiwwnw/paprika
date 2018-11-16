@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import InputValid from '../hoc/containers';
 import * as Components from '../components/Components';
 import { store, action } from '../reducers/index.js';
-import commonStyle, { unit } from '../variables/style.js';
+import commonStyle, { unit, sc } from '../variables/style.js';
 import styled from 'styled-components';
 import { getPw } from '../../services/createCipher';
 import { get } from '../../services/get';
@@ -35,20 +35,8 @@ class Login extends Component {
             label + button {
                 margin-top: ${unit(20)};
             }
-
-            a,
-            button {
-                display: block;
-                width: 100%;
-                margin-top: ${unit(4)};
-                line-height: ${unit(30)};
-                border: 0;
-                text-align: center;
-                text-decoration: none;
-                color: #fff;
-                background: #000;
-            }
         `;
+        this.NavLink = styled(NavLink)`${sc._FullBtn[1]}`;
     }
     submit() {
         if (this.props.check.apply(this)) {
@@ -119,15 +107,14 @@ class Login extends Component {
     }
 
     render() {
-
-
+    // console.log(sc.FullBtn, sc.FullBtn.lastClassName);
         return (
             <this.Login>
                 <h2>login</h2>
                 <Components.Input title="아이디" type="text" onInput={this.props.input.bind(this, 'id')} />
                 <Components.Input title="비밀번호" type="password" onInput={this.props.input.bind(this, 'pw')} />
-                <button onClick={this.submit}>로그인하기</button>
-                <NavLink to="/join">회원가입</NavLink>
+                <sc.FullBtn onClick={this.submit}>로그인하기</sc.FullBtn>
+                <this.NavLink to="/join">회원가입</this.NavLink>
                 <Components.Popup
                     bool={this.state.loginSuccessPopup} 
                     positiveBtn={<NavLink to="/mypage">마이페이지</NavLink>}

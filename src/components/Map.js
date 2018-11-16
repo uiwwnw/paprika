@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import scriptjs from 'scriptjs';
 import config from '../../config';
-import { positions } from '../../data/index.json';
+// import { positions } from '../../data/index.json';
 // let daum;
 // scriptjs('//dapi.kakao.com/v2/maps/sdk.js?appkey=' + config.daumapi + '&libraries=services');
 // script('//dapi.kakao.com/v2/maps/sdk.js?appkey=d800cd9a3ef7f463dc8064fd37d15106&libraries=services', () => {

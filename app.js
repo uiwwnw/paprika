@@ -45,13 +45,6 @@ class App extends Component {
                 overflow: hidden;
                 content: "";
             }
-
-            button ,
-            a ,
-            input {
-                color: inherit;
-                font: inherit;
-            }
         `;
        
         // Containers.map(function() {
